@@ -31,11 +31,11 @@ import java.lang.NullPointerException;
 
 public class PhoneSubInfoController extends IPhoneSubInfo.Stub {
     private static final String TAG = "PhoneSubInfoController";
-
-    private final Phone[] mPhone;
+    private Phone[] mPhone;
+    private static final int PHONE_ID_1 = 0;
     private final Context mContext;
     private final AppOpsManager mAppOps;
-
+   
     public PhoneSubInfoController(Phone[] phones) {
         mPhone = phones;
         Context context = null;
@@ -49,6 +49,7 @@ public class PhoneSubInfoController extends IPhoneSubInfo.Stub {
         }
         mContext = context;
         mAppOps = appOpsManager;
+
         if (ServiceManager.getService("iphonesubinfo") == null) {
             ServiceManager.addService("iphonesubinfo", this);
         }
